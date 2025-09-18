@@ -1,31 +1,38 @@
 package org.example.data.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
-@Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Document
-@Component
+@Data
+//@Component
 public class Todo {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    private Long id;
 
     private String taskName;
     private Category category;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime dueDate;
     private LocalDateTime createdDate;
     private boolean isCompleted;
+    private LocalDateTime completedDate;
+
+    private Long userId;
 
 
 }
